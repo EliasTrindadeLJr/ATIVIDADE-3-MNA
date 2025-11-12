@@ -2,7 +2,7 @@
 
 - [x]Metodo de Newton
 
-- [ ]Metodo de Euler
+- [x]Metodo de Euler
 
 - [ ]Método do Ponto Médio
 
