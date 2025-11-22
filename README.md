@@ -12,4 +12,4 @@
 
 - [ ]Metodo de Runga-Kunta de 4º Ordem para Sistemas
 
-- [ ]Metodo de Adamas-Bashforth de 4º ordem
+- [ ]Metodo de Adams-Bashforth de 4º ordem
