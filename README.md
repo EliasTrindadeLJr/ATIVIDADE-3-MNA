@@ -6,13 +6,14 @@
 
 - [x]Método do Ponto Médio
 
-- [ ]Metodo de Euler Modificado
+- [x]Metodo de Euler Modificado
 
 - [x]Metodo de Runga-Kunta de 4º Ordem
 
-- [ ]Metodo de Runga-Kunta de 4º Ordem para Sistemas
+- [x]Metodo de Runga-Kunta de 4º Ordem para Sistemas
 
-- [ ]Metodo de Adams-Bashforth de 4º ordem
+- [x]Metodo de Adams-Bashforth de 4º ordem
 
 - Colocar explicações aqui
 - Aumentar casas decimais ``variavel:.ndecasas``
+- Colocar comentarios e finalizar 
