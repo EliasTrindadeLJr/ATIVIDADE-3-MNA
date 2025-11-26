@@ -25,7 +25,7 @@ resultado = midpoint_method(f, a, b, N, alpha)
 print(f"\nAproximação final: y(1) ≈ {resultado}")
 print("-" * 40)
 
-#Questao 2
+#Questao 2 ----------------------------------------
 
 print("\nQuestão 2:")
 
