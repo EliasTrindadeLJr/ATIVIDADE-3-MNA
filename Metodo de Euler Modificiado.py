@@ -1,64 +1,65 @@
-import math
-print("-"*40)
-print("Questão 1 – Euler Modificado")
+import numpy as np
 
-# Questão 1
-def f1(t, y):
-    return y*(math.exp(3*t) - 2)
-
-# Solução exata Questão 1
-def y_exact_1(t):
-    return (1/5)*math.exp(-2*t) + (1/5)*math.exp(3*t)*(t - 1/5)
-
-# Método de Euler Modificado (Heun)
 def euler_modificado(f, t0, y0, h, n):
-    t = t0
-    y = y0
-    tabela = [(t, y)]
-
+    t = np.zeros(n+1)
+    y = np.zeros(n+1)
+    t[0] = t0
+    y[0] = y0
+    
     for i in range(n):
-        y_pred = y + h * f(t, y)
-        y = y + (h/2) * (f(t, y) + f(t + h, y_pred))
-        t += h
-        tabela.append((t, y))
+        t[i+1] = t[i] + h
+        # Preditor (Euler explícito)
+        y_pred = y[i] + h * f(t[i], y[i])
+        # Corretor (Heun)
+        y[i+1] = y[i] + (h/2) * (f(t[i], y[i]) + f(t[i+1], y_pred))
+    
+    return t, y
 
-    return tabela
+print("=== PROBLEMA a) ===")
+def f_a(t, y):
+    return t * np.exp(3*t) - 2*y
 
-# Parâmetros Questão 1
-h = 0.2
-t0 = 0
-y0 = 0.5
-n = 10
+def solucao_a(t):
+    return (1/5)*t*np.exp(3*t) - (1/25)*np.exp(3*t) + (1/25)*np.exp(-2*t)
 
-# Executa
-result1 = euler_modificado(f1, t0, y0, h, n)
+t0_a = 0
+y0_a = 0
+h_a = 0.5
+t_final_a = 1
+n_a = int((t_final_a - t0_a) / h_a)
 
-print(f"{'t_i':<5} {'Euler Modf.':<15} {'Erro':<10}")
-for t, w in result1:
-    print(f"{t:<5.1f} {w:<15.7f} {abs(w - y_exact_1(t)):.7f}")
+print(f"n_a = {n_a}")  # Debug
+
+t_a, y_a = euler_modificado(f_a, t0_a, y0_a, h_a, n_a)
+
+print("t\t\tEuler Modificado\tSolução Real\t\tErro")
+for i in range(len(t_a)):
+    y_real = solucao_a(t_a[i])
+    erro = abs(y_a[i] - y_real)
+    print(f"{t_a[i]:.1f}\t\t{y_a[i]:.8f}\t\t{y_real:.8f}\t\t{erro:.8f}")
 
 
-#-----------------------------------------
-print("-"*40)
-print("Questão 2 – Euler Modificado")
-
-# Questão 2
-def f2(t, y):
+# PROBLEMA b)
+print("\n=== PROBLEMA b) ===")
+def f_b(t, y):
     return 1 + (t - y)**2
 
-# Solução exata Questão 2
-def y_exact_2(t):
-    return 2*t + 1/(1 - t)
+def solucao_b(t):
+    return t + 1/(1-t)  
 
-# Parâmetros Questão 2
-h = 0.5
-t0 = 2
-y0 = 1
-n = 2
+t0_b = 2
+y0_b = 1
+h_b = 0.5
+t_final_b = 3
+n_b = int((t_final_b - t0_b) / h_b)
 
-# Executa
-result2 = euler_modificado(f2, t0, y0, h, n)
+print(f"n_b = {n_b}")  
 
-print(f"{'t_i':<5} {'Euler Modf.':<15} {'Erro':<10}")
-for t, w in result2:
-    print(f"{t:<5.1f} {w:<15.7f} {abs(w - y_exact_2(t)):.7f}")
+t_b, y_b = euler_modificado(f_b, t0_b, y0_b, h_b, n_b)
+
+print("t\t\tEuler Modificado\tSolução Real\t\tErro")
+for i in range(len(t_b)):
+    y_real = solucao_b(t_b[i])
+    erro = abs(y_b[i] - y_real)
+    print(f"{t_b[i]:.1f}\t\t{y_b[i]:.8f}\t\t{y_real:.8f}\t\t{erro:.8f}")
+

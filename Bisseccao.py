@@ -2,6 +2,8 @@ import math
 
 # Questão 1
 #Defina funcao
+#math.sqrt se refere a raiz
+print("Questão 1")
 def f(x):
     return math.sqrt(x) - math.cos(x)
 #valores

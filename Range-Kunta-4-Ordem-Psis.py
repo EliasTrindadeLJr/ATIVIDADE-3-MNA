@@ -1,7 +1,10 @@
 import math
 import numpy as np
 
-print("-"*40)
+print("="*60)
+print("QUESTÃO 1 - Sistema de Equações Diferenciais")
+print("="*60)
+
 # Sistema de equações
 def f(t, u, v):
     du = 3*u + 2*v - (2*t**2 + 1)*math.exp(2*t)
@@ -53,26 +56,18 @@ for i in range(n):
     v_values[i+1] = v
 
 # Impressão da tabela
-print("Tabela de Resultados - Questão 1")
-print("-"*40)
+print("Tabela de Resultados")
+print("-"*60)
 print("i     t         u_aprox       v_aprox")
-print("-" * 50)
+print("-" * 60)
 for i in range(n+1):
-    print(f"{i:2}   {t_values[i]:.1f}   {u_values[i]:.10f}   {v_values[i]:.10f}")
+    print(f"{i:2}   {t_values[i]:.1f}   {u_values[i]:.12f}   {v_values[i]:.12f}")
 
+print("\n" + "="*60)
+print("QUESTÃO 2 - EDO de 2ª Ordem")
+print("="*60)
 
-#questão2 
-
-print("-"*40)
-
-import math
-import numpy as np
-
-# Transformando a EDO de 2ª ordem em sistema de 1ª ordem:
-# y1 = y, y2 = y'
-# y1' = y2
-# y2' = y'' = 2*y2 - y1 + t*exp(t) - t
-def f(t, y1, y2):
+def f2(t, y1, y2):
     dy1 = y2
     dy2 = 2*y2 - y1 + t*math.exp(t) - t
     return dy1, dy2
@@ -88,7 +83,7 @@ y1 = 0.0  # y(0)
 y2 = 0.0  # y'(0)
 
 # Arrays para armazenar resultados
-t_values = np.linspace(t0, tf, n+1)
+t_values2 = np.linspace(t0, tf, n+1)
 y1_values = np.zeros(n+1)
 y2_values = np.zeros(n+1)
 
@@ -97,21 +92,21 @@ y2_values[0] = y2
 
 # Método de Runge-Kutta 4ª ordem
 for i in range(n):
-    t = t_values[i]
+    t = t_values2[i]
 
-    k1_y1, k1_y2 = f(t, y1, y2)
+    k1_y1, k1_y2 = f2(t, y1, y2)
     k1_y1 *= h
     k1_y2 *= h
 
-    k2_y1, k2_y2 = f(t + h/2, y1 + k1_y1/2, y2 + k1_y2/2)
+    k2_y1, k2_y2 = f2(t + h/2, y1 + k1_y1/2, y2 + k1_y2/2)
     k2_y1 *= h
     k2_y2 *= h
 
-    k3_y1, k3_y2 = f(t + h/2, y1 + k2_y1/2, y2 + k2_y2/2)
+    k3_y1, k3_y2 = f2(t + h/2, y1 + k2_y1/2, y2 + k2_y2/2)
     k3_y1 *= h
     k3_y2 *= h
 
-    k4_y1, k4_y2 = f(t + h, y1 + k3_y1, y2 + k3_y2)
+    k4_y1, k4_y2 = f2(t + h, y1 + k3_y1, y2 + k3_y2)
     k4_y1 *= h
     k4_y2 *= h
 
@@ -126,12 +121,13 @@ def y_exact(t):
     return (1/6)*t**3*math.exp(t) - t*math.exp(t) + 2*math.exp(t) - t - 2
 
 # Impressão da tabela
-print("Tabela de Resultados - Questão 2")
-print("-"*40)
-
+print("Tabela de Resultados")
+print("-"*70)
 print("i     t         y_aprox       y_exato       erro")
-print("-" * 60)
+print("-" * 70)
 for i in range(n+1):
-    y_ex = y_exact(t_values[i])
+    y_ex = y_exact(t_values2[i])
     erro = abs(y1_values[i] - y_ex)
-    print(f"{i:2}   {t_values[i]:.1f}   {y1_values[i]:.10f}   {y_ex:.10f}   {erro:.10f}")
+    print(f"{i:2}   {t_values2[i]:.1f}   {y1_values[i]:.12f}   {y_ex:.12f}   {erro:.12f}")
+
+print("="*60)
