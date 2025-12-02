@@ -40,8 +40,8 @@ def adams_bashforth_4(f, t0, y0, h, n):
 # Parâmetros Questão 1
 h = 0.2
 t0 = 0
-y0 = 0
-n = 10
+y0 = 1
+n = 5
 
 # Executa o método
 t, y_ab4 = adams_bashforth_4(f1, t0, y0, h, n)
